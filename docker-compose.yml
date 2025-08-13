@@ -1,0 +1,6 @@
+version: "3.8"
+
+services:
+  app:
+    image: ghcr.io/mahn-ke/fitx-fetcher:latest
+    restart: unless-stopped
