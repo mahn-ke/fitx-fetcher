@@ -1,6 +1,12 @@
 {
     "name": "fitx-fetcher",
+    "type": "module",
     "scripts": {
         "start": "node main.js"
+    },
+    "dependencies": {
+        "@google-cloud/local-auth": "^2.1.0",
+        "googleapis": "^105.0.0",
+        "node-cron": "^4.2.1"
     }
 }

@@ -4,3 +4,5 @@ services:
   app:
     image: ghcr.io/mahn-ke/fitx-fetcher:latest
     restart: unless-stopped
+    environment:
+      - RUN_AT_STARTUP=true
