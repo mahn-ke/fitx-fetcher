@@ -6,3 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - RUN_AT_STARTUP=true
+      - GCP_CREDENTIALS=${GCP_CREDENTIALS}
+      - FITX_EMAIL=${FITX_EMAIL}
+      - FITX_PASSWORD=${FITX_PASSWORD}
+      - GOOGLE_SHEET_ID=${GOOGLE_SHEET_ID}
