@@ -1,0 +1,6 @@
+{
+    "name": "fitx-fetcher",
+    "scripts": {
+        "start": "node main.js"
+    }
+}
