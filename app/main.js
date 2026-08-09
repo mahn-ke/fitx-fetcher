@@ -1,6 +1,14 @@
 import { google } from 'googleapis';
 import cron from 'node-cron';
 
+function fitxAuthorizationHeader() {
+	if (!process.env.FITX_EMAIL || !process.env.FITX_PASSWORD) {
+		throw new Error('FITX_EMAIL/FITX_PASSWORD not configured.');
+	}
+	const encoded = Buffer.from(`${process.env.FITX_EMAIL}:${process.env.FITX_PASSWORD}`, 'utf8').toString('base64');
+	return `Basic ${encoded}`;
+}
+
 // Login and get session cookie  
 async function getSessionCookie() {  
 	const loginUrl = 'https://mein.fitx.de/login';  
@@ -14,7 +22,7 @@ async function getSessionCookie() {
 			method: 'POST',  
 			headers: {  
         		"x-nox-client-type": "WEB",
-				'Authorization': 'Basic di5tYWhua2VAZ21haWwuY29tOjVuQ19XYTcyR0lXTS10Q21BbVox',  
+				'Authorization': fitxAuthorizationHeader(),  
 				'Content-Type': 'application/json',  
 				'x-public-facility-group': 'FITXDE-7B7DAC63E1744DE797245D6E314CD8F6',  
 				'x-tenant': 'fitx'  ,
@@ -59,7 +67,7 @@ async function fetchCheckinHistory(sessionCookie) {
 			headers: {  
 				Cookie: sessionCookie,
         		"x-nox-client-type": "WEB",
-				'Authorization': 'Basic di5tYWhua2VAZ21haWwuY29tOjVuQ19XYTcyR0lXTS10Q21BbVox', 
+				'Authorization': fitxAuthorizationHeader(), 
 				'Content-Type': 'application/json',  
 				'x-public-facility-group': 'FITXDE-7B7DAC63E1744DE797245D6E314CD8F6',  
 				'x-tenant': 'fitx' 
