@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    image: ghcr.io/mahn-ke/fitx-fetcher:latest@sha256:45325e695a32b1cdd409229ef4f3135b0839323368c12c801158e46cb881c814
+    image: ghcr.io/mahn-ke/fitx-fetcher:latest@sha256:66a316a3184ddae4973d60f20f313ba55ee9bad9afd0bd9d18cac3c804dcbf1f
     restart: unless-stopped
     environment:
       - RUN_AT_STARTUP=true
